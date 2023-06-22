@@ -1,7 +1,7 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { prisma } from "../../../server/db";
 
-interface DeskDistance {
+interface AddDistanceBody {
   distance: number;
 }
 
@@ -13,7 +13,11 @@ const addDistanceHandler = async (
     return res.status(405).end();
   }
 
-  const data: DeskDistance = JSON.parse(req.body );
+  console.log(req.body);
+  console.log(typeof req.body);
+
+  // eslint-disable-next-line
+  const data: AddDistanceBody = JSON.parse(req.body);
 
   if (data.distance === undefined || typeof data.distance !== "number") {
     return res.status(400).json({ error: "Invalid distance" });
