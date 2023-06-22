@@ -36,7 +36,7 @@ const addDistanceHandler = async (
   }
 
   // eslint-disable-next-line
-  const data: AddDistanceBody = req.body;
+  const data: AddDistanceBody = JSON.parse(req.body);
 
   if (data.distance === undefined || typeof data.distance !== "number") {
     return res.status(400).json({ error: "Invalid distance" });
